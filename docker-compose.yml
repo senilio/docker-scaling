@@ -1,0 +1,29 @@
+web:
+  image: nginx
+  command: bash -c "ln -sf /etc/hostname /usr/share/nginx/html/index.html ; nginx -g 'daemon off;'"
+
+consul:
+  command: -server -bootstrap -advertise 192.168.99.100
+  image: progrium/consul:latest
+  ports:
+    - "8500:8500"
+    - "8600:53/udp"
+
+registrator:
+  command: -ip=192.168.99.100 consul://consul:8500
+  image: gliderlabs/registrator:latest
+  links:
+   - consul
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+
+lb:
+  build: ./lb
+  links:
+    - consul
+  ports:
+    - "80:80"
+  environment:
+    CONSUL_URL: consul:8500
+    CONSUL: 192.168.99.100:8500
+    SERVICE: web
