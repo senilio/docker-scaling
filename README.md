@@ -1,4 +1,6 @@
-### Docker, Nginx, Consul, Consul Template and Registrator joined together to create an auto scaling reverse proxy.
+#### What's this?
+
+Docker, Nginx, Consul, Consul Template and Registrator joined together to create an auto scaling reverse proxy.
 
 #### Preparations:
 
