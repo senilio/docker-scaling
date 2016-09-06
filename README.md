@@ -1,6 +1,6 @@
-Docker, Nginx, Consul, Consul Template and Registrator joined together to create an auto scaling reverse proxy.
+# Docker, Nginx, Consul, Consul Template and Registrator joined together to create an auto scaling reverse proxy.
 
-Preparation:
+## Preparation:
 
 1. Install docker-machine
 
@@ -17,7 +17,7 @@ Preparation:
  export DOCKER_IP=$(docker-machine ip emil)
 
 
-Test:
+## Test:
 
 1. Bring up containers
 
