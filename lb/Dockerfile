@@ -1,4 +1,4 @@
-FROM nginx:1.7
+FROM nginx
 
 #Install Curl
 RUN apt-get update -qq && apt-get -y install curl unzip wget
@@ -9,7 +9,7 @@ ENV CT_URL https://releases.hashicorp.com/consul-template/0.15.0/consul-template
 #Install Consul Template
 RUN wget -O /tmp/consul-template.zip $CT_URL
 RUN unzip /tmp/consul-template.zip -d /usr/local/bin
-#RUN rm -f /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/conf.d/default.conf
 
 #Setup Consul Template Files
 RUN mkdir /etc/consul-templates
@@ -20,9 +20,8 @@ ENV NX_FILE /etc/nginx/conf.d/app.conf
 
 #Default Variables
 ENV CONSUL consul:8500
-ENV SERVICE consul-8500
+ENV SERVICE helloworld
 
-# Command will
 # 1. Write Consul Template File
 # 2. Start Nginx
 # 3. Start Consul Template

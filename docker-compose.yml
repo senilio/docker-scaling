@@ -1,16 +1,20 @@
-web:
-  image: nginx
-  command: bash -c "ln -sf /etc/hostname /usr/share/nginx/html/index.html ; nginx -g 'daemon off;'"
+helloworld:
+  build: ./helloworld
+  ports:
+    - "3000"
+  environment:
+    SERVICE_NAME: helloworld
+    SERVICE_TAGS: production
 
 consul:
-  command: -server -bootstrap -advertise 192.168.99.100
+  command: -server -bootstrap
   image: progrium/consul:latest
   ports:
     - "8500:8500"
     - "8600:53/udp"
 
 registrator:
-  command: -ip=192.168.99.100 consul://consul:8500
+  command: -ip=$DOCKER_IP consul://consul:8500
   image: gliderlabs/registrator:latest
   links:
    - consul
@@ -25,5 +29,4 @@ lb:
     - "80:80"
   environment:
     CONSUL_URL: consul:8500
-    CONSUL: 192.168.99.100:8500
-    SERVICE: web
+    SERVICE: helloworld
