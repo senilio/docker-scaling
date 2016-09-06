@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# Created to verify load balancing functionality of nginx.
+# by https://github.com/senilio/
+
 import requests, argparse
 
 parser = argparse.ArgumentParser()
