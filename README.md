@@ -5,17 +5,21 @@ Docker, Nginx, Consul, Consul Template and Registrator joined together to create
 #### Preparations:
 
 1. Install docker-machine and docker-compose
+
  ```brew install docker-machine docker-compose```
 
 2. Create a docker host
+
  ```docker-machine create -d virtualbox --virtualbox-memory "2048" --virtualbox-disk-size "8000" dockhost```
 
 3. Connect to docker engine
+
  ```eval $(docker-machine env dockhost)```
+
  ```export DOCKER_IP=$(docker-machine ip dockhost)```
 
 
-#### Test:
+#### Testing:
 
 1. Start building and bringing up containers
 
