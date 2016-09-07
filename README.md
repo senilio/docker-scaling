@@ -10,9 +10,9 @@ Docker, Nginx, Consul, Consul Template and Registrator joined together to create
 
 2. Create a docker host
 
- ```docker-machine create -d virtualbox --virtualbox-memory "2048" --virtualbox-disk-size "8000" dockhost```
+ ```docker-machine create -d virtualbox --virtualbox-memory "1024" --virtualbox-disk-size "4096" dockhost```
 
-3. Connect to docker engine
+3. Connect to the docker host and get its IP
 
  ```eval $(docker-machine env dockhost)```
 
@@ -29,7 +29,7 @@ Docker, Nginx, Consul, Consul Template and Registrator joined together to create
 
  ```./lb-script.py -s $DOCKER_IP -n 50```
 
-3. Scale up number of backend nodes
+3. Scale up number of nodes
 
  ```docker-compose scale helloworld=10```
 
@@ -44,3 +44,8 @@ Docker, Nginx, Consul, Consul Template and Registrator joined together to create
 6. Test connectivity again
 
  ```./lb-script.py -s $DOCKER_IP -n 50```
+
+
+#### To do...
+
+Provision to a Swarm cluster instead of a single node.
