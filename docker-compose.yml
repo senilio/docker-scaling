@@ -30,3 +30,4 @@ lb:
   environment:
     CONSUL_URL: consul:8500
     SERVICE: helloworld
+
